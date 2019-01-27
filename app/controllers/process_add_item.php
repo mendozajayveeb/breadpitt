@@ -4,16 +4,19 @@ session_start();
 require_once './connect.php';
 
 $name = $_POST['name'];
-$description = $_POST['description'];
 $price = $_POST['price'];
+$description = $_POST['description'];
 $category_id = $_POST['category_id'];
-$image = "../assets/images/".$_FILES['image']['name']; //store img path 
+$image = "../assets/images/".$_FILES['image']['name'];
 move_uploaded_file($_FILES['image']['tmp_name'], "./".$image);
-var_dump($_FILES['image']['tmp_name']);
 
-$sql = "INSERT INTO items (name, description, price, image_path, category_id) VALUES ('$name', '$description', $price, '$image', '$category_id')";
-$result = mysqli_query($conn, $sql);
+$sql = "INSERT INTO items(name, price, description, img_path, category_id) VALUES ('$name', '$price', '$description', '$image', '$category_id')";
+$res = mysqli_query($conn, $sql);
 
-header('Location: ../views/catalog.php');
+if($res === TRUE){
+	header('Location: ../views/items.php');
+} else {
+	echo mysqli_error($conn);
+}
 
  ?>

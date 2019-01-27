@@ -95,10 +95,12 @@ function generate_new_transaction_number() {
 	// Passing `true` enables exceptions
 
 
-	$staff_email = 'qstorephils@gmail.com';
+	$staff_email = 'breadpittphils@gmail.com';
 	$customer_email = $_SESSION['user']['email'];          //
-	$subject = 'Qstore Phils - Order Confirmation';
-	$body = '<div style="text-transform:uppercase;"><h3>Reference No.: '.$transaction_number.'</h3></div>'."<div>Ship to $address</div>";
+	$subject = 'Bread Pitt Phils - Order Confirmation';
+	$body = '<div style="text-transform:uppercase;">
+				<h3>Thank you for shopping at Bread Pitt! Your Tranaction Number is: '.$transaction_number.'. Have a nice day!</h3>
+			 </div>'."<div>Ship to the addres at $address</div>";
 	try {
 	    //Server settings
 	    $mail->SMTPDebug = 4;                                 // Enable verbose debug output
@@ -111,7 +113,7 @@ function generate_new_transaction_number() {
 	    $mail->Port = 587;                                    // TCP port to connect to
 
 	    //Recipients
-	    $mail->setFrom($staff_email, 'Qstore');
+	    $mail->setFrom($staff_email, 'Bread Pitt');
 	    $mail->addAddress($customer_email);  // Name is optional
 
 	    //Content

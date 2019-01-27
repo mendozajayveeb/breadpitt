@@ -6,40 +6,41 @@
 		?>
 
 		<div class="container">
-			<div class="row">
-				<a href="./new_item.php" class="btn btn-primary">Add New Item</a>
-			</div>
+			<section class="item-page my-5">
+				<div class="row mb-3">
+					<a href="./new_item.php" class="btn text-dark">Add New Item</a>
+				</div>
 
-			<?php 
-			$sql = "SELECT * FROM items";
-			$items = mysqli_query($conn, $sql);
+				<?php 
+				$sql = "SELECT * FROM items";
+				$items = mysqli_query($conn, $sql);
 
-			echo "<div class='row'>";
-			foreach ($items as $item) {
+				echo "<div class='row'>";
+				foreach ($items as $item) {
 
-				// var_dump($item);
+					// var_dump($item);
 
-			 ?>
-				<div class="col-sm-3 py-2">
-					<div class="card h-100">
-						<img src="<?php echo $item['image_path']; ?>" class="card-img-top">
-						<div class="card-body">
-							<h4 class="card-title"> <?php echo $item['name']; ?></h4>
-							<p class="card-text"><?php echo $item['description']; ?></p>
-							<p class="card-text"> Price: <?php echo $item['price']; ?></p>
+				 ?>
+					<div class="col-sm-3 col-md-4 py-2">
+						<div class="card h-100">
+							<img src="<?php echo $item['img_path'];?>" class="card-img-top">
+							<div class="card-body">
+								<h4 class="card-title"> <?php echo $item['name']; ?></h4>
+								<p class="card-text"><?php echo $item['description']; ?></p>
+								<p class="card-text"> Price: <?php echo $item['price']; ?></p>
 
-							<input type="hidden" value="<?php echo $item['id']; ?>">
-						</div> <!-- end card body -->
+								<input type="hidden" value="<?php echo $item['id']; ?>">
+							</div> <!-- end card body -->
 
-						<div class="card-footer">
-							<a href="./edit_item.php?id=<?php echo $item['id']; ?>" class="btn btn-primary"> Edit Item</a>
-							<a href="../controllers/delete_item.php?id=<?php echo $item['id']; ?>" class="btn btn-danger"> Delete Item</a>
+							<div class="card-footer">
+								<a href="./edit_item.php?id=<?php echo $item['id']; ?>" class="btn text-dark"> Edit </a>
+								<a href="../controllers/delete_item.php?id=<?php echo $item['id']; ?>" class="btn btn-remove text-dark"> Delete </a>
+							</div>
+
 						</div>
-
-					</div>
-				</div> <!-- end of cols -->
-			<?php }; ?>
-			</div> <!-- end of row -->
+					</div> <!-- end of cols -->
+				<?php }; ?>
+			</section>
 		</div><!--  end container -->
 
 <?php } else {

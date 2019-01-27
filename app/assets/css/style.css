@@ -1,0 +1,131 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h5,
+.navbar-brand {
+	font-family: 'Baloo Thambi', cursive;
+}
+
+.navbar-brand {
+	font-size: 1.5rem;
+	padding: .2rem;
+	border-radius: 5px;
+}
+
+.navbar-light .navbar-brand,
+cite, blockquote {
+    color: #2F5508;
+}
+
+cite, blockquote {
+    font-family: 'Charm', cursive;
+    font-size: 1.2rem;
+}
+
+.navbar, 
+.footer,
+.btn {
+   background-color: #B1FF9D;
+}
+
+.btn-remove {
+	background-color: #E75D38;
+}
+
+.banner	{
+	background-image: url(../images/web-img/banner.jpeg);
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+	position: relative;
+}
+
+.banner-message {
+	color: white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.banner-message h1 {
+	font-size: 5rem;
+	font-family: 'Baloo Thambi', cursive;
+	/*color: #7BB83A;*/
+}
+
+.banner-message p {
+	font-size: 2rem;
+	/*color: #7BB83A;*/
+}
+
+.about-page,
+.catalog-page,
+.error-page,
+.login-page,
+.register-page,
+.item-page,
+.order-page,
+.user-page,
+.profile-page,
+.cart-page,
+.checkout-page,
+.confirmation-page,
+.newitem-page,
+.edit-page {
+	min-height: 100vh;
+}
+
+.brand,
+.testimonials {
+	padding-top: 1rem;
+	min-height: 100vh;
+}
+
+.about {
+	min-height: 100vh;
+	background-image: url(../images/web-img/about.jpeg);
+	background-position: center;
+	position: relative;
+}
+
+.about-content {
+	position: relative;
+	top: 15rem;
+}
+
+.person,
+.person img {
+	width: 20vh;
+	height: 20vh;
+	margin: 0 auto;
+	margin-bottom: 5vh;
+	border-radius: 50%;
+}
+
+.testimony {
+	margin-bottom: 10vh;
+}
+
+.footer ul {
+    margin: 0.75em 0;
+    padding: 0 1em;
+    list-style: none;
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px) {
+
+  	.about {
+  		min-height: 120vh;
+  	}
+
+  	.about-content {
+		position: unset;
+	}
+}

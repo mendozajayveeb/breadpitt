@@ -5,8 +5,8 @@
 
 <div class="container">
 	<div class="error-page my-5 text-center">
-			<h3>You don't have access to view this page</h3>
-			<p><a href="./home.php">Return Home</a></p>
+		<h3>You must logged in to your account first before you can access this page.</h3>
+		<p>Login <a href="./login.php">here.</a></p>
 	</div>
 </div>
 

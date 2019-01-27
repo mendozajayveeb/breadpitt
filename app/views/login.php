@@ -3,28 +3,29 @@
 <?php function get_page_content() { ?>
 	
 	<div class="container">
-		<div class="jumbotron bg-dark text-light text-center mt-5">
-			<h4>Login</h4>
-		</div> <!-- end jumbo -->
+		<section class="login-page my-5">
+			<div class="col-sm-6 offset-sm-3">
+				<form>
+					<h3 class="mb-5 text-center">Log on to your Account</h3>
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input type="text" class="form-control" id="username" name="username">
+						<span class="validation text-danger"></span>
+					</div>
 
-		<form>
-			<div class="form-group">
-				<label for="username">Username:</label>
-				<input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
-				<span class="validation"></span>
-			</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" id="password" name="password">
+						<span class="validation"></span>
+					</div>
 
-			<div class="form-group">
-				<label for="password">Password:</label>
-				<input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
-				<span class="validation"></span>
+					<div class="text-center py-4">
+						<button type="button" class="btn" id="login">Login</button>
+					</div>
+					<p class="text-center"><small><a href="./register.php">Don't have an account?</a></small></p>
+				</form>
 			</div>
-
-		</form>
-			<div class="text-center py-4">
-				<a href="./register.php" class="btn btn-secondary">Register</a>
-				<button type="button" class="btn btn-primary" id="login">Login</button>
-			</div>
+		</section>
 	</div> <!-- end container -->
 
 <?php } ?>

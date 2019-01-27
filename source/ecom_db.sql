@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 10, 2019 at 03:43 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Host: 127.0.0.1
+-- Generation Time: Jan 26, 2019 at 04:41 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,6 +33,16 @@ CREATE TABLE `categories` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'Pants'),
+(2, 'Polo'),
+(3, 'Shoes'),
+(4, 'Coat');
+
 -- --------------------------------------------------------
 
 --
@@ -42,11 +52,19 @@ CREATE TABLE `categories` (
 CREATE TABLE `items` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
   `price` decimal(18,2) NOT NULL,
-  `image_path` varchar(255) DEFAULT NULL,
+  `description` varchar(255) NOT NULL,
+  `img_path` varchar(255) NOT NULL,
   `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `name`, `price`, `description`, `img_path`, `category_id`) VALUES
+(19, 'Test1', '20.00', 'asda', '../assets/images/jkr2.jpg', 1),
+(20, 'Test2', '20.00', 'qwert', '../assets/images/jkr2.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -59,10 +77,19 @@ CREATE TABLE `orders` (
   `user_id` int(11) NOT NULL,
   `transaction_code` varchar(255) NOT NULL,
   `purchase_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `total` int(11) NOT NULL,
   `status_id` int(11) NOT NULL,
   `payment_mode_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `transaction_code`, `purchase_date`, `status_id`, `payment_mode_id`) VALUES
+(1, 6, '5DDEFDAB21A1A937-1548469014', '2019-01-25 19:16:54', 3, 1),
+(2, 6, 'B1CE65BDB573911C-1548470834', '2019-01-25 19:47:14', 3, 1),
+(3, 6, '9ECEE77FABD7686C-1548472415', '2019-01-25 20:13:35', 2, 1),
+(4, 6, '683EE89D7EC87337-1548473782', '2019-01-25 20:36:22', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -78,6 +105,17 @@ CREATE TABLE `order_items` (
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `item_id`, `price`, `quantity`) VALUES
+(1, 1, 19, '20.00', 2),
+(2, 1, 20, '20.00', 5),
+(3, 2, 19, '20.00', 1),
+(4, 3, 19, '20.00', 2),
+(5, 4, 20, '20.00', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -88,6 +126,33 @@ CREATE TABLE `payment_modes` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `payment_modes`
+--
+
+INSERT INTO `payment_modes` (`id`, `name`) VALUES
+(1, 'Cash On Delivery'),
+(2, 'Paypal');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`) VALUES
+(1, 'Admin'),
+(2, 'User');
 
 -- --------------------------------------------------------
 
@@ -100,6 +165,15 @@ CREATE TABLE `statuses` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `statuses`
+--
+
+INSERT INTO `statuses` (`id`, `name`) VALUES
+(1, 'Pending'),
+(2, 'Completed'),
+(3, 'Cancel');
+
 -- --------------------------------------------------------
 
 --
@@ -108,13 +182,22 @@ CREATE TABLE `statuses` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL
+  `address` varchar(255) NOT NULL,
+  `roles_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `lastname`, `email`, `address`, `roles_id`) VALUES
+(1, 'admin', '$2y$10$UD9hp59tqQEsDFvxvNW5CuVtEldMZXjkTJa4DwaTJywYVFF.kwr4O', 'Jayvee', 'Mendoza', 'jebs.btc8@gmail.com', 'Bulacan', 1),
+(6, 'user1234321', '$2y$10$4.5ag1NT0pCgktAMELA4ye18fa39q0TTU2ZZ9RIT1yLIOsPCRUNZi', 'Jayvee', 'Mendoza', 'mendozajayveeb@gmail.com', 'Bulacan', 2);
 
 --
 -- Indexes for dumped tables
@@ -157,6 +240,12 @@ ALTER TABLE `payment_modes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `statuses`
 --
 ALTER TABLE `statuses`
@@ -166,7 +255,8 @@ ALTER TABLE `statuses`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `roles_id` (`roles_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -176,43 +266,49 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `payment_modes`
 --
 ALTER TABLE `payment_modes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -238,6 +334,12 @@ ALTER TABLE `orders`
 ALTER TABLE `order_items`
   ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`roles_id`) REFERENCES `roles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
