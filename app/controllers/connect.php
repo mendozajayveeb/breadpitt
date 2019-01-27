@@ -1,14 +1,14 @@
 <?php 
 
-// $host = 'db4free.net';
-// $username = '';
-// $password = '';
-// $dbname = '';
+$host = 'sql12.freemysqlhosting.net';
+$username = 'sql12275930';
+$password = 'qSTTDpunRl';
+$dbname = 'sql12275930';
 
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$dbname = 'ecom_db';
+// $host = 'localhost';
+// $username = 'root';
+// $password = '';
+// $dbname = 'ecom_db';
 
 
 $conn = mysqli_connect($host, $username, $password, $dbname);
