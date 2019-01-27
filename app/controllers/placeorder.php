@@ -98,8 +98,8 @@ function generate_new_transaction_number() {
 	$staff_email = 'breadpittphils@gmail.com';
 	$customer_email = $_SESSION['user']['email'];          //
 	$subject = 'Bread Pitt Phils - Order Confirmation';
-	$body = '<div style="text-transform:uppercase;">
-				<h3>Thank you for shopping at Bread Pitt! Your Tranaction Number is: '.$transaction_number.'. Have a nice day!</h3>
+	$body = '<div>
+				<h3>Thank you for shopping at Bread Pitt! Your Transaction Number is: '.$transaction_number.'. Have a nice day!</h3>
 			 </div>'."<div>Ship to the addres at $address</div>";
 	try {
 	    //Server settings
