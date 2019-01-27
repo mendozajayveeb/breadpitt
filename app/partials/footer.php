@@ -29,9 +29,15 @@
 					<li><i class="fab fa-facebook-f"></i> <a href="https://www.facebook.com/superjebs" class="text-dark">FACEBOOK</a></li>
 				</ul>
 			</div>
+
 		</div>
 	</div>
 </section>
+<div>
+	<small class="fixed-bottom disclaimer text-center bg-dark text-light">
+		DISCLAIMER: This site is for educational purposes only. I do not own nor claim to own any content within this site.
+	</small>
+</div>
 
 <!-- external js -->
 <script src="../assets/js/script.js"></script>
